@@ -10,6 +10,28 @@ datasource db {
 
 model Character {
     id String @default(cuid()) @id
-    name String
+    name String @unique
     age Int
+    gender String
+    pronouns String[]
+    orientation String
+    species String
+    appearance String
+    height Int
+    weight Int
+    likes String[]
+    dislikes String[]
+    personality String
+    backstory String
+    color String @db.VarChar(6)
+    relationships Relationship[]
+}
+
+model Relationship {
+    id Int @default(autoincrement()) @id
+    rating Int
+    type String
+    description String
+    character Character @relation(fields: [characterID], references: [id])
+    characterID String
 }
